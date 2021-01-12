@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+html,*,body, div, ul,ol, li,h1,h2,h3,h4,h5,h6,p,span{margin:0;padding:0;}
+body{font-family:"微软雅黑", Arial, Helvetica, sans-serif;color:#666666;line-height:25px;font-size:14px;background:#f2f2f2 url(../images/bg.gif) repeat-x left top;height:2000PX;}
+img{vertical-align:middle;}
+em{font-style:normal;}
+a img, :link img, :visited img{border:0;}
+a:link, a:visited{text-decoration:none;color:#666666;}
+a:hover,a:focus{text-decoration:underline;color:#0573bd;text-decoration:none;}
+ul, ul li{list-style-type:none;}
+
+
+#top_bg{height:40px;width:100%;background:#333;box-shadow:1px 1px 7px #999;position:relative;z-index:999;left:0;border-bottom:#C6C6C6 solid 1px;}
+.top{width:1640px;height:40px;margin:0 auto;}
+.top .logo_l{width:145px;height:40px;float:left;background:url(../images/logo.png) no-repeat left;}
+
+.nav_z{width:auto!important;height:40px;float:left;position:relative;z-index:999 ;}
+#navul li{float:left;width:80px;height:40px;position:relative;text-align:center;line-height:40px;}
+#navul li a:link, #navul li a:visited{color:#FFF;font-weight:500;letter-spacing:2px;}
+#navul li ul{display:none;position:absolute;z-index:999;background:#e6e6e6;border:#c6c6c6 1px solid;border-bottom:none;left:-1px;}
+#navul li ul li{display:block;width:78px;float:none;height:35px;position:relative;line-height:35px;border-bottom:#C6C6C6 1px solid;font-size:12px;overflow:hidden}
+#navul li.navmoon{background:#E6E6E6;border:#C6C6C6 1px solid;width:78px;height:38px;line-height:38px;}
+#navul li.navmoon a{color:#404a58;}
+#navul li.navhome a:hover{color:#FCFF00;}
+#navul li.navmoon ul{display:block;}
+#navul li.navmoon ul a{display:block;width:78px;height:35px;line-height:35px;}
+#navul li.navmoon ul a:hover{color:#0573bd;background:#FFF;}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+	<link rel="stylesheet" th:href="@{/css/global.css}" />
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<title>结果</title>
+</head>
+<body class="bg-white">
+<header id="top_bg" th:fragment="header">
+	<div class="top">
+		<div class="nav_z">
+			<ul id="navul" class="cl">
+				<li>
+					<a th:href="@{/index}">首页</a>
+				</li>
+				<li th:if="${loginUser==null}">
+					<a th:href="@{/register}">注册</a>
+				</li>
+				<li th:if="${loginUser==null}">
+					<a th:href="@{/login}">登录</a>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<img th:src="${loginUser.headerUrl}" style="width:30px;"/>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<a th:href="@{/logout}">退出登录</a>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<span th:utext="${loginUser.userName}"></span>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<a th:if="${loginUser.type==1}" th:href="@{/manager}">管理商品</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+
+<!-- 此div占个位置-->
+<div class="container">
+	<!-- 导航 -->
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<!-- logo -->
+		<a class="navbar-brand" href="#"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- 功能 -->
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		</div>
+	</nav>
+</div>
+
+	<div class="nk-container">
+
+		<!-- 内容 -->
+		<div class="main">
+			<div class="container mt-5">
+				<div class="jumbotron">
+					<p class="lead" th:text="${msg}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

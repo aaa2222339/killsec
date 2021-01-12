@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
+    <title>秒杀</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+<header id="top_bg" th:fragment="header">
+    <div class="top">
+        <div class="nav_z">
+            <ul id="navul" class="cl">
+                <li>
+                    <a th:href="@{/index}">首页</a>
+                </li>
+                <li th:if="${loginUser==null}">
+                    <a th:href="@{/register}">注册</a>
+                </li>
+                <li th:if="${loginUser==null}">
+                    <a th:href="@{/login}">登录</a>
+                </li>
+                <li th:if="${loginUser!=null}">
+                    <img th:src="${loginUser.headerUrl}" style="width:30px;"/>
+                </li>
+                <li th:if="${loginUser!=null}">
+                    <a th:href="@{/logout}">退出登录</a>
+                </li>
+                <li th:if="${loginUser!=null}">
+                    <span th:utext="${loginUser.userName}"></span>
+                </li>
+                <li th:if="${loginUser!=null}">
+                    <a th:if="${loginUser.type==1}" th:href="@{/manager}">管理商品</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="container">
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <td style="font-size: 15px"><strong style="color: black">名称</strong></td>
+                    <td style="font-size: 15px"><strong style="color: black">剩余数量</strong></td>
+                    <td style="font-size: 15px"><strong style="color: black">截止时间</strong></td>
+                    <td style="font-size: 15px"><strong style="color: black">操作</strong></td>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item:${list}">
+                        <td th:utext="${item.itemName}"></td>
+                        <td th:utext="${item.total}"></td>
+                        <td th:text="${#dates.format(item.endTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td>
+                            <a th:if="${item.canKill==1}" th:href="@{|/kill/execute/${item.id}|}" style="font-size: 25px"><strong style="color: green">抢购</strong></a>
+<!--                            <a th:if="${item.canKill==1}" th:href="@{|/detail/${item.id}|}" class="btn btn-info" target="_blank">详情</a>-->
+                            <a th:if="${item.canKill==0}" style="font-size: 25px"><strong style="color: darkred">无法抢购</strong></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript">
+    // function executeKill() {
+    //     $.ajax({
+    //         url: "/kill/execute",
+    //         method: "post",
+    //         contentType: "application/json;charset=utf-8",
+    //         data: JSON.stringify(getJsonData()),
+    //         dataType: "json",
+    //         success: function(res){
+    //             if (res.code==0) {
+    //                 alert("抢购成功");
+    //             }else{
+    //                 alert("抢购失败");
+    //                 // window.location.href="${ctx}/kill/execute/fail"
+    //             }
+    //             window.location.href="/"
+    //         },
+    //         error: function (message) {
+    //             alert("提交数据失败！");
+    //             return;
+    //         }
+    //     });
+    // }
+    // function getJsonData() {
+    //     var killId=$("#killId").val();
+    //     var data = {
+    //         "killId":killId,
+    //         "userId":1001
+    //     };
+    //     return data;
+    // }
+
+</script>
+</body>
+</html>

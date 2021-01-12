@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/global.css}" />
+	<link rel="stylesheet" th:href="@{/css/login.css}" />
+	<title>注册</title>
+</head>
+<body>
+
+    <header id="top_bg" th:fragment="header">
+		<div class="top">
+			<div class="nav_z">
+			<ul id="navul" class="cl">
+				<li>
+					<a th:href="@{/index}">首页</a>
+				</li>
+				<li th:if="${loginUser==null}">
+					<a th:href="@{/register}">注册</a>
+				</li>
+				<li th:if="${loginUser==null}">
+					<a th:href="@{/login}">登录</a>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<img th:src="${loginUser.headerUrl}" style="width:30px;"/>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<a th:href="@{/logout}">退出登录</a>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<span th:utext="${loginUser.userName}"></span>
+				</li>
+				<li th:if="${loginUser!=null}">
+					<a th:if="${loginUser.type==1}" th:href="@{/manager}">管理商品</a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	</header>
+
+	    <!-- 此div占个位置-->
+		<div class="container">
+			<!-- 导航 -->
+			<nav class="navbar navbar-expand-lg navbar-dark">
+				<!-- logo -->
+				<a class="navbar-brand" href="#"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<!-- 功能 -->
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				</div>
+			</nav>
+		</div>
+
+	<div class="nk-container">
+		<!-- 内容 -->
+		<div class="main">
+			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
+				<h3 class="text-center text-info border-bottom pb-3">注&nbsp;&nbsp;册</h3>
+				<form class="mt-5" method="post" th:action="@{/register}">
+					<div class="form-group row">
+						<label for="userName" class="col-sm-2 col-form-label text-right">账号:</label>
+						<div class="col-sm-10">
+							<input type="text"
+								   th:class="|form-control ${usernameMsg!=null?'is-invalid':''}|"
+								   th:value="${user!=null?user.userName:''}"
+								   id="userName" name="userName" placeholder="请输入您的账号!" required>
+							<div class="invalid-feedback" th:text="${usernameMsg}">
+								该账号已存在!
+							</div>
+						</div>
+					</div>
+					<div class="form-group row mt-4">
+						<label for="password" class="col-sm-2 col-form-label text-right">密码:</label>
+						<div class="col-sm-10">
+							<input type="password"
+								   th:class="|form-control ${passwordMsg!=null?'is-invalid':''}|"
+								   th:value="${user!=null?user.password:''}"
+								   id="password" name="password" placeholder="请输入您的密码!" required>
+							<div class="invalid-feedback" th:text="${passwordMsg}">
+								密码长度不能小于8位!
+							</div>
+						</div>
+					</div>
+					<div class="form-group row mt-4">
+						<label for="confirm-password" class="col-sm-2 col-form-label text-right">确认密码:</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control"
+								   th:value="${user!=null?user.password:''}"
+								   id="confirm-password" placeholder="请再次输入密码!" required>
+							<div class="invalid-feedback">
+								两次输入的密码不一致!
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="email" class="col-sm-2 col-form-label text-right">邮箱:</label>
+						<div class="col-sm-10">
+							<input type="email"
+								   th:class="|form-control ${emailMsg!=null?'is-invalid':''}|"
+								   th:value="${user!=null?user.email:''}"
+								   id="email" name="email" placeholder="请输入您的邮箱!" required>
+						</div>
+					</div>
+					<div class="form-group row mt-4">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-10 text-center">
+							<button type="submit" class="btn btn-info text-white form-control">立即注册</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
+	<script th:src="@{/js/global.js}"></script>
+	<script th:src="@{/js/register.js}"></script>
+	<script th:src="@{/js/index.js}"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/nav.js}"></script>
+</body>
+</html>

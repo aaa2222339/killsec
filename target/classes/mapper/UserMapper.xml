@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jary.kill.dao.UserMapper">
+    <sql id="insertFields">
+        user_name, password,email,is_active,create_time,salt,type,headerUrl
+    </sql>
+
+    <sql id="selectFields">
+        id,user_name, password,email,is_active,create_time,salt,type,headerUrl
+    </sql>
+
+    <select id="selectById" resultType="User">
+        select <include refid="selectFields"></include>
+        from user
+        where id = #{id}
+    </select>
+
+    <select id="selectByName" resultType="User">
+        select <include refid="selectFields"></include>
+        from user
+        where user_name = #{userName}
+    </select>
+
+    <select id="selectByEmail" resultType="User">
+        select <include refid="selectFields"></include>
+        from user
+        where email = #{email}
+    </select>
+
+    <insert id="insertUser" parameterType="User" keyProperty="id">
+        insert into user (<include refid="insertFields"></include>)
+        values(#{userName}, #{password}, #{email}, #{isActive}, #{createTime}, #{salt}, #{type}, #{headerUrl})
+    </insert>
+
+    <update id="updateHeader">
+        update user set header_url = #{headerUrl} where id = #{id}
+    </update>
+
+    <update id="updatePassword">
+        update user set password = #{password} where id = #{id}
+    </update>
+
+    <select id="findUserByUserid" resultType="User">
+        SELECT *
+        FROM user
+        WHERE id= #{id}
+    </select>
+
+</mapper>
